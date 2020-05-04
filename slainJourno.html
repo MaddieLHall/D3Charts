@@ -24,6 +24,7 @@
 			//Width and height
 			var w = 800;
 			var h = 450;
+			var padding = 20;
 			
 			var dataset = [ { key: 1992, value: 8 },		//dataset is now an array of objects.
 							{ key: 1993, value: 6 },		//Each object has a 'key' and a 'value'.
@@ -54,6 +55,67 @@
 							{ key: 2018, value: 5 },
 							{ key: 2019, value: 9 },
 							{ key: 2020, value: 2 },];
+
+
+			var dataFemale = [{ key: 1992, value: 1 },		//dataset is now an array of objects.
+							{ key: 1993, value: 0 },		//Each object has a 'key' and a 'value'.
+							{ key: 1994, value: 2 },
+							{ key: 1995, value: 0 },
+							{ key: 1996, value: 0 },
+							{ key: 1997, value: 0 },
+							{ key: 1998, value: 0 },
+							{ key: 1999, value: 0 },
+							{ key: 2000, value: 0 },
+							{ key: 2001, value: 0 },
+							{ key: 2002, value: 0 },
+							{ key: 2003, value: 1 },
+							{ key: 2004, value: 1 },
+							{ key: 2005, value: 0 },
+							{ key: 2006, value: 3 },
+							{ key: 2007, value: 1 },
+							{ key: 2008, value: 1 },
+							{ key: 2009, value: 3 },
+							{ key: 2010, value: 0 },
+							{ key: 2011, value: 1 },
+							{ key: 2012, value: 0 },
+							{ key: 2013, value: 1 },
+							{ key: 2014, value: 2 },
+							{ key: 2015, value: 1 },
+							{ key: 2016, value: 0 },
+							{ key: 2017, value: 2 },
+							{ key: 2018, value: 0 },
+							{ key: 2019, value: 1 },
+							{ key: 2020, value: 0 },]
+
+			var dataMale = [{ key: 1992, value: 7 },		//dataset is now an array of objects.
+							{ key: 1993, value: 6 },		//Each object has a 'key' and a 'value'.
+							{ key: 1994, value: 7 },
+							{ key: 1995, value: 1 },
+							{ key: 1996, value: 2 },
+							{ key: 1997, value: 3 },
+							{ key: 1998, value: 0 },
+							{ key: 1999, value: 6 },
+							{ key: 2000, value: 1 },
+							{ key: 2001, value: 7 },
+							{ key: 2002, value: 3 },
+							{ key: 2003, value: 7 },
+							{ key: 2004, value: 11 },
+							{ key: 2005, value: 7 },
+							{ key: 2006, value: 12 },
+							{ key: 2007, value: 13 },
+							{ key: 2008, value: 3 },
+							{ key: 2009, value: 7 },
+							{ key: 2010, value: 9 },
+							{ key: 2011, value: 15 },
+							{ key: 2012, value: 20 },
+							{ key: 2013, value: 23 },
+							{ key: 2014, value: 12 },
+							{ key: 2015, value: 14 },
+							{ key: 2016, value: 11 },
+							{ key: 2017, value: 14 },
+							{ key: 2018, value: 5 },
+							{ key: 2019, value: 8 },
+							{ key: 2020, value: 2 },]
 
 			var xScale = d3.scaleBand()
 							.domain(d3.range(dataset.length))
@@ -127,24 +189,57 @@
 
 			   // create xaxis
 			   svg.append("g")
-			   		.call(xAxis)
+				.attr("class", "axis")
+				.attr("transform", "translate(0," + (h - padding) + ")")
+				.call(xAxis)
+			   	.selectAll("text")	
+			     .style("text-anchor", "end")
+			      .attr("dx", "-.8em")
+			     .attr("dy", ".15em")
+			     .attr("transform", "rotate(-65)");
 
-			   		.selectAll("text")	
-			        .style("text-anchor", "end")
-			        .attr("dx", "-.8em")
-			        .attr("dy", ".15em")
-			        .attr("transform", "rotate(-65)");
-			   		
 
-			   // svg.append("g")
-      // 				.attr("class", "axis")
-     	// 			 .attr("transform", "translate(0," + h + ")")
-      // 				.call(d3.axisBottom(xAxisScale).ticks(dataset.length))
-			     	 // .selectAll("text")	
-			       //  .style("text-anchor", "end")
-			       //  .attr("dx", "-.8em")
-			       //  .attr("dy", ".15em")
-			       //  .attr("transform", "rotate(-65)");
+			     //Male button click changes to male data
+
+			     d3.select("button#male")
+				.on("click", function() {
+
+			svg.selectAll("rect")
+			   .data(dataMale, key)		//Bind data with custom key function
+			   .attr("x", function(d, i) {
+			   		return xScale(i);
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d.value);
+			   })
+			   .attr("width", xScale.bandwidth())
+			   .attr("height", function(d) {
+			   		return yScale(d.value);
+			   })
+			   .attr("fill", function(d) {
+					return "rgb(" + (d.value * 10) + ",0, 25)";
+			   });
+
+			//Create labels
+			svg.selectAll("text")
+			   .data(dataMale, key)		//Bind data with custom key function
+			   .text(function(d) {
+			   		return d.value;
+			   })
+			   .attr("text-anchor", "middle")
+			   .attr("x", function(d, i) {
+			   		return xScale(i) + xScale.bandwidth() / 2;
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d.value) + 14;
+			   })
+			   .attr("font-family", "sans-serif")
+			   .attr("font-size", "11px")
+			   .attr("fill", "white");
+				});
+
+
+
 			   		
 
 			

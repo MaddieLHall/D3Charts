@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-		<p style= "color:blue; font-size:30px"> button functionality not implemented yet</p>
+		<h1> Slain freelance journalists </h1>
 		 <button type="button" id="allJourn">All Freelance Journalists</button> 
 		 <button type="button" id="male">Male Freelance Journalists</button> 
 		 <button type="button" id="female">Female Freelance Journalists</button> 
@@ -198,6 +198,8 @@
 			     .attr("dy", ".15em")
 			     .attr("transform", "rotate(-65)");
 
+			     //END OF ORIGINAL GRAPH
+
 
 			     //Male button click changes to male data
 
@@ -206,6 +208,8 @@
 
 			svg.selectAll("rect")
 			   .data(dataMale, key)		//Bind data with custom key function
+			   .transition()
+			   .duration(1000)
 			   .attr("x", function(d, i) {
 			   		return xScale(i);
 			   })
@@ -223,6 +227,8 @@
 			//Create labels
 			svg.selectAll("text")
 			   .data(dataMale, key)		//Bind data with custom key function
+			   .transition()
+			   .duration(1000)
 			   .text(function(d) {
 			   		return d.value;
 			   })
@@ -238,9 +244,93 @@
 			   .attr("fill", "white");
 				});
 
+ // Female Button click changes to female data
 
 
-			   		
+			     d3.select("button#female")
+				.on("click", function() {
+
+			svg.selectAll("rect")
+			   .data(dataFemale, key)		//Bind data with custom key function
+			   .transition()
+			   .duration(1000)
+			   .attr("x", function(d, i) {
+			   		return xScale(i);
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d.value);
+			   })
+			   .attr("width", xScale.bandwidth())
+			   .attr("height", function(d) {
+			   		return yScale(d.value);
+			   })
+			   .attr("fill", function(d) {
+					return "rgb(" + (d.value * 10) + ",0, 25)";
+			   });
+
+			//Create labels
+			svg.selectAll("text")
+			   .data(dataFemale, key)		//Bind data with custom key function
+			   .transition()
+			   .duration(1000)
+			   .text(function(d) {
+			   		return d.value;
+			   })
+			   .attr("text-anchor", "middle")
+			   .attr("x", function(d, i) {
+			   		return xScale(i) + xScale.bandwidth() / 2;
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d.value) + 14;
+			   })
+			   .attr("font-family", "sans-serif")
+			   .attr("font-size", "11px")
+			   .attr("fill", "white");
+				});
+
+		//All button changes data to all slain freelance journalists
+
+
+			     d3.select("button#allJourn")
+				.on("click", function() {
+
+			svg.selectAll("rect")
+			   .data(dataset, key)		//Bind data with custom key function
+			   .transition()
+			   .duration(1000)
+			   .attr("x", function(d, i) {
+			   		return xScale(i);
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d.value);
+			   })
+			   .attr("width", xScale.bandwidth())
+			   .attr("height", function(d) {
+			   		return yScale(d.value);
+			   })
+			   .attr("fill", function(d) {
+					return "rgb(" + (d.value * 10) + ",0, 25)";
+			   });
+
+			//Create labels
+			svg.selectAll("text")
+			   .data(dataset, key)		//Bind data with custom key function
+			   .transition()
+			   .duration(1000)
+			   .text(function(d) {
+			   		return d.value;
+			   })
+			   .attr("text-anchor", "middle")
+			   .attr("x", function(d, i) {
+			   		return xScale(i) + xScale.bandwidth() / 2;
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d.value) + 14;
+			   })
+			   .attr("font-family", "sans-serif")
+			   .attr("font-size", "11px")
+			   .attr("fill", "white");
+				});
 
 			
 		</script>

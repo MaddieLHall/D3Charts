@@ -14,20 +14,24 @@
 </head>
 
 <body>
-	<h1> Slain freelance journalists </h1>
+	<h1> Slain Freelance Journalists from 1992-2020 </h1>
 	<button type="button" id="allJourn">All Freelance Journalists</button>
 	<button type="button" id="male">Male Freelance Journalists</button>
 	<button type="button" id="female">Female Freelance Journalists</button>
+	
+	
 
 
 	<script type="text/javascript">
 
 		//Width and height
-		var w = 800;
-		var h = 450;
-		var padding = 20;
+		let w = 800;
+		let h = 450;
+		let padding = 20;
 
-		var dataset = [{ key: 1992, value: 8 },		//dataset is now an array of objects.
+		let offsetHeight = h - 40 
+
+		let dataset = [{ key: 1992, value: 8 },		//dataset is now an array of objects.
 		{ key: 1993, value: 6 },		//Each object has a 'key' and a 'value'.
 		{ key: 1994, value: 9 },
 		{ key: 1995, value: 1 },
@@ -58,7 +62,7 @@
 		{ key: 2020, value: 2 },];
 
 
-		var dataFemale = [{ key: 1992, value: 1 },		//dataset is now an array of objects.
+		let dataFemale = [{ key: 1992, value: 1 },		//dataset is now an array of objects.
 		{ key: 1993, value: 0 },		//Each object has a 'key' and a 'value'.
 		{ key: 1994, value: 2 },
 		{ key: 1995, value: 0 },
@@ -88,7 +92,7 @@
 		{ key: 2019, value: 1 },
 		{ key: 2020, value: 0 },]
 
-		var dataMale = [{ key: 1992, value: 7 },		//dataset is now an array of objects.
+		let dataMale = [{ key: 1992, value: 7 },		//dataset is now an array of objects.
 		{ key: 1993, value: 6 },		//Each object has a 'key' and a 'value'.
 		{ key: 1994, value: 7 },
 		{ key: 1995, value: 1 },
@@ -118,42 +122,42 @@
 		{ key: 2019, value: 8 },
 		{ key: 2020, value: 2 },]
 
-		var xScale = d3.scaleBand()
+		let xScale = d3.scaleBand()
 			.domain(d3.range(dataset.length))
 			.rangeRound([0, w])
 			.paddingInner(0.05);
 
-		var yScale = d3.scaleLinear()
+		let yScale = d3.scaleLinear()
 			.domain([0, d3.max(dataset, function (d) { return d.value; })])
-			.range([0, h - 40]);
+			.range([0,offsetHeight]);
 
-		var yMaleScale = d3.scaleLinear()
+		let yMaleScale = d3.scaleLinear()
 			.domain([0, d3.max(dataMale, function (d) { return d.value; })])
-			.range([0, h]);
+			.range([0, offsetHeight]);
 
-		var yFemScale = d3.scaleLinear()
+		let yFemScale = d3.scaleLinear()
 			.domain([0, d3.max(dataFemale, function (d) { return d.value; })])
-			.range([0, h]);
+			.range([0, offsetHeight]);
 
 
-		var xAxisScale = d3.scaleBand()
+		let xAxisScale = d3.scaleBand()
 			.domain([1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020])
 			.rangeRound([0, w]);
 
-		var xAxis = d3.axisBottom()
+		let xAxis = d3.axisBottom()
 			.scale(xAxisScale);
 
-		var formatAxis = function (d) {
+		let formatAxis = function (d) {
 			return d.key;
 		}
 
 		//Define key function, to be used when binding data
-		var key = function (d) {
+		let key = function (d) {
 			return d.key;
 		};
 
 		//Create SVG element
-		var svg = d3.select("body")
+		let svg = d3.select("body")
 			.append("svg")
 			.attr("width", w)
 			.attr("height", h);
@@ -171,7 +175,7 @@
 			})
 			.attr("width", xScale.bandwidth())
 			.attr("height", function (d) {
-				return h - 40 - yScale(d.value);
+				return offsetHeight - yScale(d.value);
 			})
 			.attr("fill", function (d) {
 				return "rgb(" + (d.value * 10) + ",0, 25)";
@@ -199,7 +203,7 @@
 		// create xaxis
 		svg.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0," + (h - 40) + ")")
+			.attr("transform", "translate(0," + offsetHeight + ")")
 			.call(xAxis)
 			.selectAll("text")
 			.style("text-anchor", "end")
@@ -223,7 +227,7 @@
 						return xScale(i);
 					})
 					.attr("y", function (d) {
-						return h - yMaleScale(d.value);
+						return offsetHeight - yMaleScale(d.value);
 					})
 					.attr("width", xScale.bandwidth())
 					.attr("height", function (d) {
@@ -246,7 +250,7 @@
 						return xScale(i) + xScale.bandwidth() / 2;
 					})
 					.attr("y", function (d) {
-						return h - yMaleScale(d.value) + 14;
+						return offsetHeight - yMaleScale(d.value) + 14;
 					})
 					.attr("font-family", "sans-serif")
 					.attr("font-size", "11px")
@@ -267,7 +271,7 @@
 						return xScale(i);
 					})
 					.attr("y", function (d) {
-						return h - yFemScale(d.value);
+						return offsetHeight - yFemScale(d.value);
 					})
 					.attr("width", xScale.bandwidth())
 					.attr("height", function (d) {
@@ -290,7 +294,7 @@
 						return xScale(i) + xScale.bandwidth() / 2;
 					})
 					.attr("y", function (d) {
-						return h - yFemScale(d.value) + 14;
+						return offsetHeight - yFemScale(d.value) + 14;
 					})
 					.attr("font-family", "sans-serif")
 					.attr("font-size", "11px")
@@ -311,7 +315,7 @@
 						return xScale(i);
 					})
 					.attr("y", function (d) {
-						return h - yScale(d.value);
+						return offsetHeight - yScale(d.value);
 					})
 					.attr("width", xScale.bandwidth())
 					.attr("height", function (d) {
@@ -334,7 +338,7 @@
 						return xScale(i) + xScale.bandwidth() / 2;
 					})
 					.attr("y", function (d) {
-						return h - yScale(d.value) + 14;
+						return offsetHeight - yScale(d.value) + 14;
 					})
 					.attr("font-family", "sans-serif")
 					.attr("font-size", "11px")

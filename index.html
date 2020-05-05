@@ -170,11 +170,11 @@
 				return xScale(i);
 			})
 			.attr("y", function (d) {
-				return yScale(d.value);
+				return offsetHeight - yScale(d.value);
 			})
 			.attr("width", xScale.bandwidth())
 			.attr("height", function (d) {
-				return offsetHeight - yScale(d.value);
+				return yScale(d.value);
 			})
 			.attr("fill", function (d) {
 				return "rgb(" + (d.value * 10) + ",0, 25)";
@@ -186,18 +186,18 @@
 			.enter()
 			.append("text")
 			.text(function (d) {
-				return d.value;
-			})
-			.attr("text-anchor", "middle")
-			.attr("x", function (d, i) {
-				return xScale(i) + xScale.bandwidth() / 2;
-			})
-			.attr("y", function (d) {
-				return yScale(d.value) + 20;
-			})
-			.attr("font-family", "sans-serif")
-			.attr("font-size", "11px")
-			.attr("fill", "white");
+						return d.value;
+					})
+					.attr("text-anchor", "middle")
+					.attr("x", function (d, i) {
+						return xScale(i) + xScale.bandwidth() / 2;
+					})
+					.attr("y", function (d) {
+						return offsetHeight - yScale(d.value) + 14;
+					})
+					.attr("font-family", "sans-serif")
+					.attr("font-size", "11px")
+					.attr("fill", "white");
 
 		// create xaxis
 		svg.append("g")

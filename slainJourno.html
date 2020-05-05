@@ -1,347 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Slain Freelance Journalists</title>
-    <script src = "https://d3js.org/d3.v4.min.js"></script> 	
-    <style type="text/css">
-			/* No style rules here yet */
-			button{
-				margin-bottom: 50px;
-			}
 
-		</style>
-	</head>
-	<body>
-		<h1> Slain freelance journalists </h1>
-		 <button type="button" id="allJourn">All Freelance Journalists</button> 
-		 <button type="button" id="male">Male Freelance Journalists</button> 
-		 <button type="button" id="female">Female Freelance Journalists</button> 
+<head>
+	<meta charset="utf-8">
+	<title>Slain Freelance Journalists</title>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<style type="text/css">
+		/* No style rules here yet */
+		button {
+			margin-bottom: 50px;
+		}
+	</style>
+</head>
 
-			
-		<script type="text/javascript">
-
-			//Width and height
-			var w = 800;
-			var h = 450;
-			var padding = 20;
-			
-			var dataset = [ { key: 1992, value: 8 },		//dataset is now an array of objects.
-							{ key: 1993, value: 6 },		//Each object has a 'key' and a 'value'.
-							{ key: 1994, value: 9 },
-							{ key: 1995, value: 1 },
-							{ key: 1996, value: 2 },
-							{ key: 1997, value: 3 },
-							{ key: 1998, value: 0 },
-							{ key: 1999, value: 6 },
-							{ key: 2000, value: 1 },
-							{ key: 2001, value: 7 },
-							{ key: 2002, value: 3 },
-							{ key: 2003, value: 8 },
-							{ key: 2004, value: 12 },
-							{ key: 2005, value: 7 },
-							{ key: 2006, value: 15 },
-							{ key: 2007, value: 14 },
-							{ key: 2008, value: 4 },
-							{ key: 2009, value: 10 },
-							{ key: 2010, value: 9 },
-							{ key: 2011, value: 16 },
-							{ key: 2012, value: 20 },
-							{ key: 2013, value: 24 },
-							{ key: 2014, value: 14 },
-							{ key: 2015, value: 15 },
-							{ key: 2016, value: 11 },
-							{ key: 2017, value: 16 },
-							{ key: 2018, value: 5 },
-							{ key: 2019, value: 9 },
-							{ key: 2020, value: 2 },];
+<body>
+	<h1> Slain freelance journalists </h1>
+	<button type="button" id="allJourn">All Freelance Journalists</button>
+	<button type="button" id="male">Male Freelance Journalists</button>
+	<button type="button" id="female">Female Freelance Journalists</button>
 
 
-			var dataFemale = [{ key: 1992, value: 1 },		//dataset is now an array of objects.
-							{ key: 1993, value: 0 },		//Each object has a 'key' and a 'value'.
-							{ key: 1994, value: 2 },
-							{ key: 1995, value: 0 },
-							{ key: 1996, value: 0 },
-							{ key: 1997, value: 0 },
-							{ key: 1998, value: 0 },
-							{ key: 1999, value: 0 },
-							{ key: 2000, value: 0 },
-							{ key: 2001, value: 0 },
-							{ key: 2002, value: 0 },
-							{ key: 2003, value: 1 },
-							{ key: 2004, value: 1 },
-							{ key: 2005, value: 0 },
-							{ key: 2006, value: 3 },
-							{ key: 2007, value: 1 },
-							{ key: 2008, value: 1 },
-							{ key: 2009, value: 3 },
-							{ key: 2010, value: 0 },
-							{ key: 2011, value: 1 },
-							{ key: 2012, value: 0 },
-							{ key: 2013, value: 1 },
-							{ key: 2014, value: 2 },
-							{ key: 2015, value: 1 },
-							{ key: 2016, value: 0 },
-							{ key: 2017, value: 2 },
-							{ key: 2018, value: 0 },
-							{ key: 2019, value: 1 },
-							{ key: 2020, value: 0 },]
+	<script type="text/javascript">
 
-			var dataMale = [{ key: 1992, value: 7 },		//dataset is now an array of objects.
-							{ key: 1993, value: 6 },		//Each object has a 'key' and a 'value'.
-							{ key: 1994, value: 7 },
-							{ key: 1995, value: 1 },
-							{ key: 1996, value: 2 },
-							{ key: 1997, value: 3 },
-							{ key: 1998, value: 0 },
-							{ key: 1999, value: 6 },
-							{ key: 2000, value: 1 },
-							{ key: 2001, value: 7 },
-							{ key: 2002, value: 3 },
-							{ key: 2003, value: 7 },
-							{ key: 2004, value: 11 },
-							{ key: 2005, value: 7 },
-							{ key: 2006, value: 12 },
-							{ key: 2007, value: 13 },
-							{ key: 2008, value: 3 },
-							{ key: 2009, value: 7 },
-							{ key: 2010, value: 9 },
-							{ key: 2011, value: 15 },
-							{ key: 2012, value: 20 },
-							{ key: 2013, value: 23 },
-							{ key: 2014, value: 12 },
-							{ key: 2015, value: 14 },
-							{ key: 2016, value: 11 },
-							{ key: 2017, value: 14 },
-							{ key: 2018, value: 5 },
-							{ key: 2019, value: 8 },
-							{ key: 2020, value: 2 },]
+		//Width and height
+		var w = 800;
+		var h = 450;
+		var padding = 20;
 
-			var xScale = d3.scaleBand()
-							.domain(d3.range(dataset.length))
-							.rangeRound([0, w])
-							.paddingInner(0.05);
-			
-			var yScale = d3.scaleLinear()
-							.domain([0, d3.max(dataset, function(d) { return d.value; })])
-							.range([0, h]);
-
-			var yMaleScale = d3.scaleLinear()
-							.domain([0, d3.max(dataMale, function(d) { return d.value; })])
-							.range([0, h]);
-
-			var yFemScale = d3.scaleLinear()
-							.domain([0, d3.max(dataFemale, function(d) { return d.value; })])
-							.range([0, h]);
+		var dataset = [{ key: 1992, value: 8 },		//dataset is now an array of objects.
+		{ key: 1993, value: 6 },		//Each object has a 'key' and a 'value'.
+		{ key: 1994, value: 9 },
+		{ key: 1995, value: 1 },
+		{ key: 1996, value: 2 },
+		{ key: 1997, value: 3 },
+		{ key: 1998, value: 0 },
+		{ key: 1999, value: 6 },
+		{ key: 2000, value: 1 },
+		{ key: 2001, value: 7 },
+		{ key: 2002, value: 3 },
+		{ key: 2003, value: 8 },
+		{ key: 2004, value: 12 },
+		{ key: 2005, value: 7 },
+		{ key: 2006, value: 15 },
+		{ key: 2007, value: 14 },
+		{ key: 2008, value: 4 },
+		{ key: 2009, value: 10 },
+		{ key: 2010, value: 9 },
+		{ key: 2011, value: 16 },
+		{ key: 2012, value: 20 },
+		{ key: 2013, value: 24 },
+		{ key: 2014, value: 14 },
+		{ key: 2015, value: 15 },
+		{ key: 2016, value: 11 },
+		{ key: 2017, value: 16 },
+		{ key: 2018, value: 5 },
+		{ key: 2019, value: 9 },
+		{ key: 2020, value: 2 },];
 
 
-			var xAxisScale = d3.scaleBand()
-							.domain([1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020])
-							.rangeRound([0,w]);
+		var dataFemale = [{ key: 1992, value: 1 },		//dataset is now an array of objects.
+		{ key: 1993, value: 0 },		//Each object has a 'key' and a 'value'.
+		{ key: 1994, value: 2 },
+		{ key: 1995, value: 0 },
+		{ key: 1996, value: 0 },
+		{ key: 1997, value: 0 },
+		{ key: 1998, value: 0 },
+		{ key: 1999, value: 0 },
+		{ key: 2000, value: 0 },
+		{ key: 2001, value: 0 },
+		{ key: 2002, value: 0 },
+		{ key: 2003, value: 1 },
+		{ key: 2004, value: 1 },
+		{ key: 2005, value: 0 },
+		{ key: 2006, value: 3 },
+		{ key: 2007, value: 1 },
+		{ key: 2008, value: 1 },
+		{ key: 2009, value: 3 },
+		{ key: 2010, value: 0 },
+		{ key: 2011, value: 1 },
+		{ key: 2012, value: 0 },
+		{ key: 2013, value: 1 },
+		{ key: 2014, value: 2 },
+		{ key: 2015, value: 1 },
+		{ key: 2016, value: 0 },
+		{ key: 2017, value: 2 },
+		{ key: 2018, value: 0 },
+		{ key: 2019, value: 1 },
+		{ key: 2020, value: 0 },]
 
-			var xAxis = d3.axisBottom()
-                   .scale(xAxisScale);
+		var dataMale = [{ key: 1992, value: 7 },		//dataset is now an array of objects.
+		{ key: 1993, value: 6 },		//Each object has a 'key' and a 'value'.
+		{ key: 1994, value: 7 },
+		{ key: 1995, value: 1 },
+		{ key: 1996, value: 2 },
+		{ key: 1997, value: 3 },
+		{ key: 1998, value: 0 },
+		{ key: 1999, value: 6 },
+		{ key: 2000, value: 1 },
+		{ key: 2001, value: 7 },
+		{ key: 2002, value: 3 },
+		{ key: 2003, value: 7 },
+		{ key: 2004, value: 11 },
+		{ key: 2005, value: 7 },
+		{ key: 2006, value: 12 },
+		{ key: 2007, value: 13 },
+		{ key: 2008, value: 3 },
+		{ key: 2009, value: 7 },
+		{ key: 2010, value: 9 },
+		{ key: 2011, value: 15 },
+		{ key: 2012, value: 20 },
+		{ key: 2013, value: 23 },
+		{ key: 2014, value: 12 },
+		{ key: 2015, value: 14 },
+		{ key: 2016, value: 11 },
+		{ key: 2017, value: 14 },
+		{ key: 2018, value: 5 },
+		{ key: 2019, value: 8 },
+		{ key: 2020, value: 2 },]
 
-			var formatAxis = function(d) {
-    return d.key;      
-}
-			
-			//Define key function, to be used when binding data
-			var key = function(d) {
-				return d.key;
-			};
-			
-			//Create SVG element
-			var svg = d3.select("body")
-						.append("svg")
-						.attr("width", w)
-						.attr("height", h);
+		var xScale = d3.scaleBand()
+			.domain(d3.range(dataset.length))
+			.rangeRound([0, w])
+			.paddingInner(0.05);
 
-			//Create bars
-			svg.selectAll("rect")
-			   .data(dataset, key)		//Bind data with custom key function
-			   .enter()
-			   .append("rect")
-			   .attr("x", function(d, i) {
-			   		return xScale(i);
-			   })
-			   .attr("y", function(d) {
-			   		return h - yScale(d.value);
-			   })
-			   .attr("width", xScale.bandwidth())
-			   .attr("height", function(d) {
-			   		return yScale(d.value);
-			   })
-			   .attr("fill", function(d) {
-					return "rgb(" + (d.value * 10) + ",0, 25)";
-			   });
+		var yScale = d3.scaleLinear()
+			.domain([0, d3.max(dataset, function (d) { return d.value; })])
+			.range([0, h - 40]);
 
-			//Create labels
-			svg.selectAll("text")
-			   .data(dataset, key)		//Bind data with custom key function
-			   .enter()
-			   .append("text")
-			   .text(function(d) {
-			   		return d.value;
-			   })
-			   .attr("text-anchor", "middle")
-			   .attr("x", function(d, i) {
-			   		return xScale(i) + xScale.bandwidth() / 2;
-			   })
-			   .attr("y", function(d) {
-			   		return h - yScale(d.value) + 14;
-			   })
-			   .attr("font-family", "sans-serif")
-			   .attr("font-size", "11px")
-			   .attr("fill", "white");
+		var yMaleScale = d3.scaleLinear()
+			.domain([0, d3.max(dataMale, function (d) { return d.value; })])
+			.range([0, h]);
 
-			   // create xaxis
-			   svg.append("g")
-				.attr("class", "axis")
-				.attr("transform", "translate(0," + (h - padding) + ")")
-				.call(xAxis)
-			   	.selectAll("text")	
-			     .style("text-anchor", "end")
-			      .attr("dx", "-.8em")
-			     .attr("dy", ".15em")
-			     .attr("transform", "rotate(-65)");
-
-			     //END OF ORIGINAL GRAPH
-
-
-			     //Male button click changes to male data
-
-			     d3.select("button#male")
-				.on("click", function() {
-
-			svg.selectAll("rect")
-			   .data(dataMale, key)		//Bind data with custom key function
-			   .transition()
-			   .duration(1000)
-			   .attr("x", function(d, i) {
-			   		return xScale(i);
-			   })
-			   .attr("y", function(d) {
-			   		return h - yMaleScale(d.value);
-			   })
-			   .attr("width", xScale.bandwidth())
-			   .attr("height", function(d) {
-			   		return yMaleScale(d.value);
-			   })
-			   .attr("fill", function(d) {
-					return "rgb(" + (d.value * 10) + ",0, 25)";
-			   });
-
-			//Create labels
-			svg.selectAll("text")
-			   .data(dataMale, key)		//Bind data with custom key function
-			   .transition()
-			   .duration(1000)
-			   .text(function(d) {
-			   		return d.value;
-			   })
-			   .attr("text-anchor", "middle")
-			   .attr("x", function(d, i) {
-			   		return xScale(i) + xScale.bandwidth() / 2;
-			   })
-			   .attr("y", function(d) {
-			   		return h - yMaleScale(d.value) + 14;
-			   })
-			   .attr("font-family", "sans-serif")
-			   .attr("font-size", "11px")
-			   .attr("fill", "white");
-				});
-
- // Female Button click changes to female data
+		var yFemScale = d3.scaleLinear()
+			.domain([0, d3.max(dataFemale, function (d) { return d.value; })])
+			.range([0, h]);
 
 
-			     d3.select("button#female")
-				.on("click", function() {
+		var xAxisScale = d3.scaleBand()
+			.domain([1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020])
+			.rangeRound([0, w]);
 
-			svg.selectAll("rect")
-			   .data(dataFemale, key)		//Bind data with custom key function
-			   .transition()
-			   .duration(1000)
-			   .attr("x", function(d, i) {
-			   		return xScale(i);
-			   })
-			   .attr("y", function(d) {
-			   		return h - yFemScale(d.value);
-			   })
-			   .attr("width", xScale.bandwidth())
-			   .attr("height", function(d) {
-			   		return yFemScale(d.value);
-			   })
-			   .attr("fill", function(d) {
-					return "rgb(" + (d.value * 10) + ",0, 25)";
-			   });
+		var xAxis = d3.axisBottom()
+			.scale(xAxisScale);
 
-			//Create labels
-			svg.selectAll("text")
-			   .data(dataFemale, key)		//Bind data with custom key function
-			   .transition()
-			   .duration(1000)
-			   .text(function(d) {
-			   		return d.value;
-			   })
-			   .attr("text-anchor", "middle")
-			   .attr("x", function(d, i) {
-			   		return xScale(i) + xScale.bandwidth() / 2;
-			   })
-			   .attr("y", function(d) {
-			   		return h - yFemScale(d.value) + 14;
-			   })
-			   .attr("font-family", "sans-serif")
-			   .attr("font-size", "11px")
-			   .attr("fill", "white");
-				});
+		var formatAxis = function (d) {
+			return d.key;
+		}
+
+		//Define key function, to be used when binding data
+		var key = function (d) {
+			return d.key;
+		};
+
+		//Create SVG element
+		var svg = d3.select("body")
+			.append("svg")
+			.attr("width", w)
+			.attr("height", h);
+
+		//Create bars
+		svg.selectAll("rect")
+			.data(dataset, key)		//Bind data with custom key function
+			.enter()
+			.append("rect")
+			.attr("x", function (d, i) {
+				return xScale(i);
+			})
+			.attr("y", function (d) {
+				return yScale(d.value);
+			})
+			.attr("width", xScale.bandwidth())
+			.attr("height", function (d) {
+				return h - 40 - yScale(d.value);
+			})
+			.attr("fill", function (d) {
+				return "rgb(" + (d.value * 10) + ",0, 25)";
+			});
+
+		//Create labels
+		svg.selectAll("text")
+			.data(dataset, key)		//Bind data with custom key function
+			.enter()
+			.append("text")
+			.text(function (d) {
+				return d.value;
+			})
+			.attr("text-anchor", "middle")
+			.attr("x", function (d, i) {
+				return xScale(i) + xScale.bandwidth() / 2;
+			})
+			.attr("y", function (d) {
+				return yScale(d.value) + 20;
+			})
+			.attr("font-family", "sans-serif")
+			.attr("font-size", "11px")
+			.attr("fill", "white");
+
+		// create xaxis
+		svg.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0," + (h - 40) + ")")
+			.call(xAxis)
+			.selectAll("text")
+			.style("text-anchor", "end")
+			.attr("dx", "-.8em")
+			.attr("dy", ".15em")
+			.attr("transform", "rotate(-65)");
+
+		//END OF ORIGINAL GRAPH
+
+
+		//Male button click changes to male data
+
+		d3.select("button#male")
+			.on("click", function () {
+
+				svg.selectAll("rect")
+					.data(dataMale, key)		//Bind data with custom key function
+					.transition()
+					.duration(1000)
+					.attr("x", function (d, i) {
+						return xScale(i);
+					})
+					.attr("y", function (d) {
+						return h - yMaleScale(d.value);
+					})
+					.attr("width", xScale.bandwidth())
+					.attr("height", function (d) {
+						return yMaleScale(d.value);
+					})
+					.attr("fill", function (d) {
+						return "rgb(" + (d.value * 10) + ",0, 25)";
+					});
+
+				//Create labels
+				svg.selectAll("text")
+					.data(dataMale, key)		//Bind data with custom key function
+					.transition()
+					.duration(1000)
+					.text(function (d) {
+						return d.value;
+					})
+					.attr("text-anchor", "middle")
+					.attr("x", function (d, i) {
+						return xScale(i) + xScale.bandwidth() / 2;
+					})
+					.attr("y", function (d) {
+						return h - yMaleScale(d.value) + 14;
+					})
+					.attr("font-family", "sans-serif")
+					.attr("font-size", "11px")
+					.attr("fill", "white");
+			});
+
+		// Female Button click changes to female data
+
+
+		d3.select("button#female")
+			.on("click", function () {
+
+				svg.selectAll("rect")
+					.data(dataFemale, key)		//Bind data with custom key function
+					.transition()
+					.duration(1000)
+					.attr("x", function (d, i) {
+						return xScale(i);
+					})
+					.attr("y", function (d) {
+						return h - yFemScale(d.value);
+					})
+					.attr("width", xScale.bandwidth())
+					.attr("height", function (d) {
+						return yFemScale(d.value);
+					})
+					.attr("fill", function (d) {
+						return "rgb(" + (d.value * 10) + ",0, 25)";
+					});
+
+				//Create labels
+				svg.selectAll("text")
+					.data(dataFemale, key)		//Bind data with custom key function
+					.transition()
+					.duration(1000)
+					.text(function (d) {
+						return d.value;
+					})
+					.attr("text-anchor", "middle")
+					.attr("x", function (d, i) {
+						return xScale(i) + xScale.bandwidth() / 2;
+					})
+					.attr("y", function (d) {
+						return h - yFemScale(d.value) + 14;
+					})
+					.attr("font-family", "sans-serif")
+					.attr("font-size", "11px")
+					.attr("fill", "white");
+			});
 
 		//All button changes data to all slain freelance journalists
 
 
-			     d3.select("button#allJourn")
-				.on("click", function() {
+		d3.select("button#allJourn")
+			.on("click", function () {
 
-			svg.selectAll("rect")
-			   .data(dataset, key)		//Bind data with custom key function
-			   .transition()
-			   .duration(1000)
-			   .attr("x", function(d, i) {
-			   		return xScale(i);
-			   })
-			   .attr("y", function(d) {
-			   		return h - yScale(d.value);
-			   })
-			   .attr("width", xScale.bandwidth())
-			   .attr("height", function(d) {
-			   		return yScale(d.value);
-			   })
-			   .attr("fill", function(d) {
-					return "rgb(" + (d.value * 10) + ",0, 25)";
-			   });
+				svg.selectAll("rect")
+					.data(dataset, key)		//Bind data with custom key function
+					.transition()
+					.duration(1000)
+					.attr("x", function (d, i) {
+						return xScale(i);
+					})
+					.attr("y", function (d) {
+						return h - yScale(d.value);
+					})
+					.attr("width", xScale.bandwidth())
+					.attr("height", function (d) {
+						return yScale(d.value);
+					})
+					.attr("fill", function (d) {
+						return "rgb(" + (d.value * 10) + ",0, 25)";
+					});
 
-			//Create labels
-			svg.selectAll("text")
-			   .data(dataset, key)		//Bind data with custom key function
-			   .transition()
-			   .duration(1000)
-			   .text(function(d) {
-			   		return d.value;
-			   })
-			   .attr("text-anchor", "middle")
-			   .attr("x", function(d, i) {
-			   		return xScale(i) + xScale.bandwidth() / 2;
-			   })
-			   .attr("y", function(d) {
-			   		return h - yScale(d.value) + 14;
-			   })
-			   .attr("font-family", "sans-serif")
-			   .attr("font-size", "11px")
-			   .attr("fill", "white");
-				});
+				//Create labels
+				svg.selectAll("text")
+					.data(dataset, key)		//Bind data with custom key function
+					.transition()
+					.duration(1000)
+					.text(function (d) {
+						return d.value;
+					})
+					.attr("text-anchor", "middle")
+					.attr("x", function (d, i) {
+						return xScale(i) + xScale.bandwidth() / 2;
+					})
+					.attr("y", function (d) {
+						return h - yScale(d.value) + 14;
+					})
+					.attr("font-family", "sans-serif")
+					.attr("font-size", "11px")
+					.attr("fill", "white");
+			});
 
-			
-		</script>
-		<p> Data from <a href = "https://cpj.org/data/killed?status=Killed&motiveConfirmed%5B%5D=Confirmed&type%5B%5D=Journalist&start_year=1992&end_year=2020&group_by=year"> Committee to Protect Journalists</a>. Data as of May 4, 2020 </p>
-	</body>
+
+	</script>
+	<p> Data from <a
+			href="https://cpj.org/data/killed?status=Killed&motiveConfirmed%5B%5D=Confirmed&type%5B%5D=Journalist&start_year=1992&end_year=2020&group_by=year">
+			Committee to Protect Journalists</a>. Data as of May 4, 2020 </p>
+</body>
+
 </html>
